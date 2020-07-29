@@ -1,0 +1,11 @@
+# Logs
+errors.txt
+log.txt
+traceback.txt
+# Compilation units
+*.rpyc
+*.rpyb
+*.rpymc
+# Saves
+*.save
+game/saves/*
