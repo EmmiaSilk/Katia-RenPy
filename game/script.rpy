@@ -9,6 +9,7 @@ define katia = Character("Katia", color="#e4a8be")
 # The game starts here.
 label start:
     play music "audio/music/exploring.wav"
+    show screen chapter_display
     scene bg street 1 at center:
         zoom 1.5
     show bear cute at center
@@ -65,7 +66,7 @@ label leave_katia:
     great difference."
 
     hide katia with dissolve
-    narration "And so, Katia storms off angrily, having apparently forgotten
+    "And so, Katia storms off angrily, having apparently forgotten
     what she was here for in the first place."
 
     scene bg black with dissolve

@@ -136,7 +136,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/textbox.png", xalign=0.5, yalign=0.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -152,9 +152,12 @@ style say_label:
     properties gui.text_properties("name", accent=True)
     xalign gui.name_xalign
     yalign 0.5
+    outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
+    bold 1
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
+    outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
 
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
@@ -279,6 +282,78 @@ style quick_button:
 style quick_button_text:
     properties gui.button_text_properties("quick_button")
 
+
+## Chapter Display screen ######################################################
+##
+## The Chapter Display tells the player the current chapter and time of day.
+
+screen chapter_display():
+    tag chapter_display
+    style_prefix "chapter_display"
+    frame:
+        style "chapter_display_frame"
+        ## Text boxes
+        window:
+            id "chapter_display_textbox"
+            style "chapter_display_textbox"
+            text "Chapter 1\nDaytime"
+        ## Slowly-rotating sun and background
+        frame:
+            style "chapter_display_icon_holder"
+            window at celestial_rotate_reverse:
+                style "chapter_display_icon_background"
+            window at celestial_rotate:
+                style "chapter_display_icon"
+
+style chapter_display_frame is default
+style chapter_display_frame:
+    xsize 350
+    ysize 160
+    xalign 0.9
+    yalign 0.7
+
+style chapter_display_text:
+    color "#000"
+    xalign 0.4
+    line_leading 10
+    size 24
+    line_spacing 6
+
+style chapter_display_textbox is default
+style chapter_display_textbox:
+    xsize 265
+    ysize 90
+    yalign 0.5
+    background "gui/chapterbar/bar.png"
+
+style chapter_display_icon_holder is default
+style chapter_display_icon_holder:
+    xsize 160
+    ysize 160
+    xalign 1.0
+style chapter_display_icon_background is default
+style chapter_display_icon_background:
+    xsize 160
+    ysize 160
+    yalign 0.5
+    xalign 0.5
+    background "gui/chapterbar/background.png"
+style chapter_display_icon is default
+style chapter_display_icon:
+    xsize 100
+    ysize 100
+    yalign 0.5
+    xalign 0.5
+    background "gui/chapterbar/sun.png"
+
+transform celestial_rotate:
+    rotate 0
+    linear 15 rotate 360
+    repeat
+transform celestial_rotate_reverse:
+    rotate 0
+    linear 20 rotate -360
+    repeat
 
 ################################################################################
 ## Main and Game Menu Screens
